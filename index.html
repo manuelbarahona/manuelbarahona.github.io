@@ -68,6 +68,11 @@
   .spotlight{position:absolute;inset:0;z-index:0;pointer-events:none;
     background:radial-gradient(340px 340px at var(--mx,70%) var(--my,30%),rgba(143,195,201,.18),transparent 70%);transition:background .12s}
   header .wrap{position:relative;z-index:2}
+  .ver-watermark{position:absolute;top:14px;right:18px;z-index:3;
+    font-family:'Courier New',monospace;font-size:12px;letter-spacing:1px;
+    color:rgba(234,244,245,.5);background:rgba(143,195,201,.10);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 12px}
   header h1{font-size:52px;font-weight:bold;letter-spacing:1px;line-height:1.1}
   .gradient-text{background:linear-gradient(100deg,#eaf4f5 0%,#8fc3c9 25%,#4a7d82 50%,#e0a066 72%,#8fc3c9 88%,#eaf4f5 100%);
     background-size:280% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 9s linear infinite}
@@ -200,6 +205,7 @@
 </div>
 
 <header id="hero">
+  <div class="ver-watermark">build v1.0</div>
   <div class="aura"></div>
   <div class="spotlight" id="spot"></div>
   <div class="wrap">
