@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Portfolio build v1.2 - 2026-09-14 -->
+<!-- Portfolio build v1.3 - 2026-09-14 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -164,7 +164,7 @@
     display:flex;align-items:center;justify-content:center;transition:transform .2s,background .25s,box-shadow .25s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
   .cbtn:hover{background:var(--teal);color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(61,107,116,.3)}
   .cbtn:active{transform:translateY(0)}
-  .carousel-stage{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#eef2f3,#e2eaec)}
+  .carousel-stage{position:relative;width:100%;height:min(70vh,640px);border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#eef2f3,#e2eaec)}
   .cslide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease}
   .cslide.active{opacity:1;pointer-events:auto}
   .cslide iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -234,7 +234,7 @@
 </div>
 
 <header id="hero">
-  <div class="ver-watermark">build v1.2</div>
+  <div class="ver-watermark">build v1.3</div>
   <div class="aura"></div>
   <div class="spotlight" id="spot"></div>
   <div class="wrap">
@@ -345,7 +345,7 @@
       if(r.img){
         const a=document.createElement('a');
         a.href=r.link||r.img; a.target='_blank'; a.rel='noopener';
-        a.style.cssText='position:absolute;inset:0;display:block;overflow:auto;background:#fff';
+        a.style.cssText='position:absolute;inset:0;display:block;overflow-y:auto;overflow-x:hidden;background:#fff;-webkit-overflow-scrolling:touch';
         const im=document.createElement('img');
         im.src=r.img; im.alt=r.title;
         im.style.cssText='width:100%;display:block';
@@ -394,7 +394,7 @@
   </div>
 </section>
 
-<footer>&copy; 2026 Manuel Barahona Gandia &middot; Built with HTML, hosted on GitHub Pages &middot; <span style="opacity:.6">build v1.2</span></footer>
+<footer>&copy; 2026 Manuel Barahona Gandia &middot; Built with HTML, hosted on GitHub Pages &middot; <span style="opacity:.6">build v1.3</span></footer>
 
 <script>
   const nav=document.getElementById('nav');
