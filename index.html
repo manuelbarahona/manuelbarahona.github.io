@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Portfolio build v1.3 - 2026-09-14 -->
+<!-- Portfolio build v1.5 - 2026-09-14 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -234,7 +234,7 @@
 </div>
 
 <header id="hero">
-  <div class="ver-watermark">build v1.3</div>
+  <div class="ver-watermark">build v1.5</div>
   <div class="aura"></div>
   <div class="spotlight" id="spot"></div>
   <div class="wrap">
@@ -302,24 +302,24 @@
 <script>
   // ===== Carousel data — paste each report Publish-to-web iframe URL into url =====
   const REPORTS = [
-    { title:"Global Analysis - Executive Overview",
+    { title:"Global Overview - Executive Summary",
       meta:"Six regional clusters (NOAM, CEMEAI, CHIF, UKI, APAC, LATAM) with Revenue, EBITDA and EBIT vs budget, and revenue trend by service line.",
-      tags:["Power BI","KPI Cards","Variance","DAX"], img:"report01.png", link:"report01.png" },
-    { title:"Global Analysis - EBITDA Bridge",
-      meta:"Waterfall walk from Revenue through Direct Labour and SG&A to OpEBITDA and OpEBIT.",
-      tags:["Power BI","Waterfall","DAX"], url:"" },
-    { title:"Global Analysis - Trend & Time Intelligence",
-      meta:"Year-on-year and rolling trends across the four KPIs using DAX time intelligence.",
-      tags:["Power BI","Time Intelligence","DAX"], url:"" },
-    { title:"Global Analysis - Pareto & Contribution",
-      meta:"80/20 contribution analysis on cost drivers behind SG&A and Direct Labour.",
-      tags:["Power BI","Pareto","DAX"], url:"" },
-    { title:"Global Analysis - Variance Deep-Dive",
-      meta:"Actual vs budget vs forecast across Revenue, Direct Labour, SG&A, OpEBITDA and OpEBIT.",
-      tags:["Power BI","Variance","RLS"], url:"" },
-    { title:"Iberiaport - Aviation Services",
-      meta:"Cargo, fuel and ground handling analytics across a 4-page summary with Pareto and time analysis.",
-      tags:["Power BI","Pareto","DAX"], url:"" }
+      tags:["Power BI","KPI Cards","Variance","DAX"], img:"reports/report01.png", link:"reports/report01.png" },
+    { title:"Pareto Analysis - by Country",
+      meta:"80/20 revenue concentration across CEMEAI countries, with cumulative contribution curve and cut-off point at 79.6%.",
+      tags:["Power BI","Pareto","DAX"], img:"reports/report02.png", link:"reports/report02.png" },
+    { title:"Pareto Analysis - by Station",
+      meta:"Revenue breakdown down to airport/station level, ranking the top 18 airports that make up 80% of revenue.",
+      tags:["Power BI","Pareto","Drill-down"], img:"reports/report03.png", link:"reports/report03.png" },
+    { title:"Variance Analysis - OpEBITDA Bridge",
+      meta:"Waterfall walk of OpEBITDA variance by business line, with a ranked country-level variance table against budget.",
+      tags:["Power BI","Waterfall","Variance"], img:"reports/report04.png", link:"reports/report04.png" },
+    { title:"Portfolio Scatter - Margin vs Revenue",
+      meta:"Station portfolio quadrant analysis plotting Op EBITDA and Op EBIT margin against revenue, with High/Low segmentation.",
+      tags:["Power BI","Scatter","Quadrant"], img:"reports/report05.png", link:"reports/report05.png" },
+    { title:"Portfolio Scatter - Quadrant Focus",
+      meta:"High & High quadrant deep-dive, isolating the top-performing stations by margin and revenue contribution.",
+      tags:["Power BI","Scatter","Analysis"], img:"reports/report06.png", link:"reports/report06.png" }
   ];
 
   (function(){
@@ -394,7 +394,7 @@
   </div>
 </section>
 
-<footer>&copy; 2026 Manuel Barahona Gandia &middot; Built with HTML, hosted on GitHub Pages &middot; <span style="opacity:.6">build v1.3</span></footer>
+<footer>&copy; 2026 Manuel Barahona Gandia &middot; Built with HTML, hosted on GitHub Pages &middot; <span style="opacity:.6">build v1.5</span></footer>
 
 <script>
   const nav=document.getElementById('nav');
