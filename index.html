@@ -146,6 +146,35 @@
   .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .embed-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:15px}
 
+  /* ===== FANCY CAROUSEL ===== */
+  .carousel{position:relative;background:rgba(255,255,255,.38);
+    -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+    border:1px solid rgba(255,255,255,.55);border-radius:18px;padding:26px;box-shadow:var(--shadow);overflow:hidden}
+  .carousel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:18px}
+  .carousel-title-wrap{flex:1;min-width:0}
+  .carousel-title{font-size:20px;color:var(--ink2);font-weight:bold;transition:opacity .35s}
+  .carousel-meta{font-size:14px;color:var(--muted);margin-top:6px;transition:opacity .35s}
+  .carousel-tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;transition:opacity .35s}
+  .carousel-tags .tag{font-size:12px;letter-spacing:.5px;background:rgba(143,195,201,.18);border:1px solid rgba(143,195,201,.4);color:var(--teal);padding:4px 11px;border-radius:20px}
+  .carousel-nav{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .carousel-counter{font-family:Arial,sans-serif;font-size:14px;letter-spacing:1px;color:var(--muted);min-width:52px;text-align:center}
+  .carousel-counter b{color:var(--ink2)}
+  .cbtn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(143,195,201,.5);
+    background:rgba(255,255,255,.5);color:var(--ink2);font-size:20px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:transform .2s,background .25s,box-shadow .25s;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .cbtn:hover{background:var(--teal);color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(61,107,116,.3)}
+  .cbtn:active{transform:translateY(0)}
+  .carousel-stage{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#eef2f3,#e2eaec)}
+  .cslide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .45s ease}
+  .cslide.active{opacity:1;pointer-events:auto}
+  .cslide iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .cslide-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--muted);font-size:15px;gap:12px}
+  .cslide-ph .open-live{font-size:14px;letter-spacing:.5px;background:var(--ink2);color:#fff;padding:9px 20px;border-radius:22px;text-decoration:none}
+  .cslide-ph .open-live:hover{background:var(--teal)}
+  .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+  .cdot{width:8px;height:8px;border-radius:50%;background:rgba(61,107,116,.25);border:0;cursor:pointer;transition:background .25s,transform .25s}
+  .cdot.active{background:var(--teal);transform:scale(1.35)}
+
   /* CARDS */
   .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
   .pcard{position:relative;overflow:hidden;background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
@@ -248,22 +277,107 @@
 <section id="projects">
   <div class="wrap">
     <div class="reveal"><div class="eyebrow">Projects</div><h2>Selected work</h2><p class="sub">Power BI &amp; data projects built on synthetic, non-confidential data</p></div>
-    <div class="featured reveal">
-      <h3>Iberiaport - Aviation Services Analytics</h3>
-      <div class="meta">Cargo, fuel and ground handling performance across a 4-page executive summary, with Pareto and time-series analysis. Interactive Power BI report (synthetic data).</div>
-      <div class="embed">
-        <div class="embed-placeholder">Iberiaport aviation services report.<br>Paste your Power BI Publish-to-web iframe src here (replace this placeholder line and uncomment the iframe below).</div>
-        <!-- <iframe title="Iberiaport - Aviation Services Analytics" src="PASTE_PUBLISH_TO_WEB_LINK_HERE" allowfullscreen></iframe> -->
+
+    <div class="carousel reveal" id="carousel">
+      <div class="carousel-head">
+        <div class="carousel-title-wrap">
+          <div class="carousel-title" id="cTitle">Global Analysis - Executive Summary</div>
+          <div class="carousel-meta" id="cMeta">High-level view of the four core KPIs with variance against budget and prior year.</div>
+          <div class="carousel-tags" id="cTags"></div>
+        </div>
+        <div class="carousel-nav">
+          <button class="cbtn" id="cPrev" aria-label="Previous report">&#8249;</button>
+          <div class="carousel-counter"><b id="cCur">1</b> / <span id="cTot">6</span></div>
+          <button class="cbtn" id="cNext" aria-label="Next report">&#8250;</button>
+        </div>
       </div>
+      <div class="carousel-stage" id="cStage"></div>
+      <div class="carousel-dots" id="cDots"></div>
     </div>
-    <div class="cards">
-      <div class="pcard reveal" data-d="0"><h3>Iberiaport Aviation Services</h3><p>Cargo, fuel and ground handling analytics across a 4-page summary, with Pareto and analysis-over-time subpages. Built on synthetic data.</p><div class="tags"><span class="tag">Power BI</span><span class="tag">Pareto</span><span class="tag">DAX</span></div><a class="btn" href="#" target="_blank" rel="noopener">View report</a></div>
-      <div class="pcard reveal" data-d="1"><h3>P&amp;L Semantic Model</h3><p>A finance semantic model with dynamic RLS, a chained DAX measure system and write-back commentary for executives.</p><div class="tags"><span class="tag">Power BI</span><span class="tag">RLS</span><span class="tag">DAX</span></div><a class="btn" href="#" target="_blank" rel="noopener">View report</a></div>
-      <div class="pcard reveal" data-d="2"><h3>Treasury AR/AP Dashboard</h3><p>Working-capital reporting over an AR/AP ETL pipeline, with customer payment profiling across Gold/Silver layers.</p><div class="tags"><span class="tag">SQL</span><span class="tag">ETL</span><span class="tag">Power Query</span></div><a class="btn" href="#" target="_blank" rel="noopener">View report</a></div>
-    </div>
-    <p class="note">Each &ldquo;View report&rdquo; links to a live Power BI Publish-to-web report. More reports added as they are published.</p>
+
+    <p class="note">Reports read from the same source and each demonstrates a different Power BI technique. All built on synthetic, non-confidential data.</p>
   </div>
 </section>
+
+<script>
+  // ===== Carousel data — paste each report Publish-to-web iframe URL into url =====
+  const REPORTS = [
+    { title:"Global Analysis - Executive Overview",
+      meta:"Six regional clusters (NOAM, CEMEAI, CHIF, UKI, APAC, LATAM) with Revenue, EBITDA and EBIT vs budget, and revenue trend by service line.",
+      tags:["Power BI","KPI Cards","Variance","DAX"], img:"report01.png", link:"report01.png" },
+    { title:"Global Analysis - EBITDA Bridge",
+      meta:"Waterfall walk from Revenue through Direct Labour and SG&A to OpEBITDA and OpEBIT.",
+      tags:["Power BI","Waterfall","DAX"], url:"" },
+    { title:"Global Analysis - Trend & Time Intelligence",
+      meta:"Year-on-year and rolling trends across the four KPIs using DAX time intelligence.",
+      tags:["Power BI","Time Intelligence","DAX"], url:"" },
+    { title:"Global Analysis - Pareto & Contribution",
+      meta:"80/20 contribution analysis on cost drivers behind SG&A and Direct Labour.",
+      tags:["Power BI","Pareto","DAX"], url:"" },
+    { title:"Global Analysis - Variance Deep-Dive",
+      meta:"Actual vs budget vs forecast across Revenue, Direct Labour, SG&A, OpEBITDA and OpEBIT.",
+      tags:["Power BI","Variance","RLS"], url:"" },
+    { title:"Iberiaport - Aviation Services",
+      meta:"Cargo, fuel and ground handling analytics across a 4-page summary with Pareto and time analysis.",
+      tags:["Power BI","Pareto","DAX"], url:"" }
+  ];
+
+  (function(){
+    const stage=document.getElementById('cStage'), title=document.getElementById('cTitle'),
+          meta=document.getElementById('cMeta'), tagsEl=document.getElementById('cTags'),
+          cur=document.getElementById('cCur'), dots=document.getElementById('cDots');
+    document.getElementById('cTot').textContent=REPORTS.length;
+    let i=0, loaded=new Array(REPORTS.length).fill(false);
+
+    // build slides
+    REPORTS.forEach((r,idx)=>{
+      const s=document.createElement('div'); s.className='cslide'; s.dataset.idx=idx;
+      stage.appendChild(s);
+      const d=document.createElement('button'); d.className='cdot'; d.setAttribute('aria-label','Go to report '+(idx+1));
+      d.addEventListener('click',()=>go(idx)); dots.appendChild(d);
+    });
+    const slides=[...stage.querySelectorAll('.cslide')];
+    const dotEls=[...dots.querySelectorAll('.cdot')];
+
+    function loadSlide(idx){
+      if(loaded[idx]) return;
+      const r=REPORTS[idx], s=slides[idx];
+      if(r.img){
+        const a=document.createElement('a');
+        a.href=r.link||r.img; a.target='_blank'; a.rel='noopener';
+        a.style.cssText='position:absolute;inset:0;display:block;overflow:auto;background:#fff';
+        const im=document.createElement('img');
+        im.src=r.img; im.alt=r.title;
+        im.style.cssText='width:100%;display:block';
+        a.appendChild(im); s.appendChild(a);
+      } else if(r.url){
+        const f=document.createElement('iframe');
+        f.title=r.title; f.src=r.url; f.setAttribute('allowfullscreen','');
+        s.appendChild(f);
+      } else {
+        s.innerHTML='<div class="cslide-ph">This report will appear here once its Power BI link is added.</div>';
+      }
+      loaded[idx]=true;
+    }
+    function render(){
+      title.style.opacity=0; meta.style.opacity=0; tagsEl.style.opacity=0;
+      setTimeout(()=>{
+        const r=REPORTS[i];
+        title.textContent=r.title; meta.textContent=r.meta;
+        tagsEl.innerHTML=r.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
+        title.style.opacity=1; meta.style.opacity=1; tagsEl.style.opacity=1;
+      },180);
+      slides.forEach((s,x)=>s.classList.toggle('active',x===i));
+      dotEls.forEach((d,x)=>d.classList.toggle('active',x===i));
+      cur.textContent=i+1;
+      loadSlide(i);
+    }
+    function go(n){ i=(n+REPORTS.length)%REPORTS.length; render(); }
+    document.getElementById('cPrev').addEventListener('click',()=>go(i-1));
+    document.getElementById('cNext').addEventListener('click',()=>go(i+1));
+    render();
+  })();
+</script>
 
 <section id="contact">
   <div class="aura2"></div>
